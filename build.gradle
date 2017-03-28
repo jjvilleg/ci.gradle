@@ -101,9 +101,9 @@ if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')
           url 'https://wasdev.github.io'
 
           scm {
-            connection 'scm:git:git@github.com:WASdev/ci.gradle.git'
-            developerConnection 'scm:git:git@github.com:WASdev/ci.gradle.git'
-            url 'git@github.com:WASdev/ci.gradle.git'
+            connection 'scm:git:git@github.com:jjvilleg/ci.gradle.git'
+            developerConnection 'scm:git:git@github.com:jjvilleg/ci.gradle.git'
+            url 'git@github.com:jjvilleg/ci.gradle.git'
             tag 'HEAD'
           }
 
