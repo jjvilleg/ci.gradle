@@ -17,6 +17,18 @@ repositories {
 configurations {
     provided
 }
+buildscript {
+  repositories {
+    maven {
+      url 'https://plugins.gradle.org/m2/'
+    }
+  }
+  dependencies {
+    classpath 'net.researchgate:gradle-release:2.4.0'
+  }
+}
+
+apply plugin: 'net.researchgate.release'
 
 dependencies {
     compile gradleApi()
