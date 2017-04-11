@@ -26,7 +26,6 @@ buildscript {
     classpath 'net.researchgate:gradle-release:2.4.0'
   }
 }
-
 apply plugin: 'net.researchgate.release'
 
 dependencies {
