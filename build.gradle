@@ -116,7 +116,7 @@ if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')
             connection 'scm:git:git@github.com:jjvilleg/ci.gradle.git'
             developerConnection 'scm:git:git@github.com:jjvilleg/ci.gradle.git'
             url 'git@github.com:jjvilleg/ci.gradle.git'
-            tag tag
+            tag 'test'
           }
 
           licenses {
