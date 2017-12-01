@@ -1,0 +1,19 @@
+environment:
+  matrix:
+    include:
+      - jdk: oraclejdk7
+        env: WLP_VERSION=17.0.0.1
+      - jdk: oraclejdk8
+        env: WLP_VERSION=17.0.0.2
+
+build_script:
+  # Build the compiled extension
+  - "gradlew.bat install check -Prunit=online -DwlpVersion=$WLP_VERSION --stacktrace --info"
+
+test_script:
+  # Run the project tests
+  - "gradlew.bat build"
+
+artifacts:
+  # Archive the generated packages in the ci.appveyor.com build report.
+- path: build\*
