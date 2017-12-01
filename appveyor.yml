@@ -1,10 +1,7 @@
 environment:
   matrix:
-    include:
-      - jdk: oraclejdk7
-        env: WLP_VERSION=17.0.0.1
-      - jdk: oraclejdk8
-        env: WLP_VERSION=17.0.0.2
+        -jdk: C:\Program Files\Java\jdk1.8.0\bin
+        -env: WLP_VERSION=17.0.0.2
 
 build_script:
   # Build the compiled extension
