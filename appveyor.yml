@@ -1,7 +1,7 @@
 environment:
   matrix:
         - jdk: "C:\\Program Files\\Java\\jdk1.8.0\\bin:"
-        WLP_VERSION: "17.0.0.2"
+        - WLP_VERSION: "17.0.0.2"
 
 build_script:
   # Build the compiled extension
