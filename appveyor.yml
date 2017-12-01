@@ -1,9 +1,9 @@
 environment:
   matrix:
         - jdk: "C:\\Program Files\\Java\\jdk1.8.0\\bin:"
-        - WLP_VERSION: "17.0.0.2"
 
 build_script:
+    WLP_VERSION: "17.0.0.2"
   # Build the compiled extension
   - "gradlew.bat install check -Prunit=online -DwlpVersion=$WLP_VERSION --stacktrace --info"
 
