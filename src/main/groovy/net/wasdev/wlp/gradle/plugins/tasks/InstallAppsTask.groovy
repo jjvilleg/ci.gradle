@@ -56,11 +56,13 @@ class InstallAppsTask extends AbstractServerTask {
         configureApps(project)
 
         if (server.apps != null && !server.apps.isEmpty()) {
+            createApplicationFolder('apps')
             Tuple appsLists = splitAppList(server.apps)
             installMultipleApps(appsLists[0], 'apps')
             installFileList(appsLists[1], 'apps')
         }
         if (server.dropins != null && !server.dropins.isEmpty()) {
+            createApplicationFolder('dropins')
             Tuple dropinsLists = splitAppList(server.dropins)
             installMultipleApps(dropinsLists[0], 'dropins')
             installFileList(dropinsLists[1], 'dropins')
@@ -71,11 +73,13 @@ class InstallAppsTask extends AbstractServerTask {
         if (applicationXml.hasChildElements()) {
             logger.warn("At least one application is not defined in the server configuration but the build file indicates it should be installed in the apps folder. Application configuration is being added to the target server configuration dropins folder by the plug-in.")
             applicationXml.writeApplicationXmlDocument(getServerDir(project))
+            writeServerPropertiesToXml(project)
         } else if (hasConfiguredApp(libertyConfigDropinsAppXml)) {
             logger.warn("At least one application is not defined in the server configuration but the build file indicates it should be installed in the apps folder. Liberty will use additional application configuration added to the the target server configuration dropins folder by the plug-in.")
         } else {
             if (libertyConfigDropinsAppXml.exists()){
                 libertyConfigDropinsAppXml.delete()
+                writeServerPropertiesToXml(project)
             }
         }
     }
@@ -319,5 +323,18 @@ class InstallAppsTask extends AbstractServerTask {
             return appXml.hasChildElements()
         }
         return false
+    }
+
+    void createApplicationFolder(String appDir) {
+        File serverDir = getServerDir(project)
+        File applicationDirectory = new File(serverDir, appDir)
+
+        try {
+            if (!applicationDirectory.exists()) {
+                applicationDirectory.mkdir()
+            }
+        } catch (Exception e) {
+            throw new GradleException("There was a problem creating ${applicationDirectory.getCanonicalPath()}.", e)
+        }
     }
 }
