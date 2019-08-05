@@ -172,17 +172,16 @@ pluginBundle {
   }
 }
 
-if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
-    
-    if (!version.endsWith("SNAPSHOT")) {
-        signing {
-            ext."signing.password" = findProperty("signingPassword")
-            sign configurations.archives
-        }
-    } else {
-        signing.required = false
+if (!version.endsWith("SNAPSHOT")) {
+    signing {
+        ext."signing.password" = findProperty("signingPassword")
+        sign configurations.archives
     }
+} else {
+    signing.required = false
+}
 
+if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
     uploadArchives {
         repositories {
             mavenDeployer {
